@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <div class="logo">
+      <a routerLink="/">ONE WAY</a>
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li *ngFor="let link of navLinks">
+        <a 
+          [routerLink]="link.path" 
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link">
+          {{ link.label }}
+        </a>
+      </li>
+    </ul>
+
+    <!-- CTA Button -->
+    <a routerLink="/get-a-quote" class="cta-btn">Get Quote</a>
+  </div>
+</nav>

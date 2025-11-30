@@ -1,0 +1,82 @@
+<div class="about-page">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="gradient-text">About ONE WAY</h1>
+      <p>Leading the future of warehouse fulfillment with innovation and reliability</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-content">
+        <h2 class="gradient-text">Our Story</h2>
+        <p>Founded in 2015, ONE WAY FULFILLMENT was born from a vision to revolutionize the e-commerce logistics industry. We started with a single warehouse and a commitment to excellence. Today, we serve thousands of businesses nationwide.</p>
+        <p>Our mission is simple: provide world-class fulfillment services that help e-commerce businesses focus on what they do best—growing their business and delighting their customers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-section">
+    <div class="container">
+      <h2 class="gradient-text" style="text-align: center; margin-bottom: 60px;">Why Choose Us</h2>
+      <div class="why-grid">
+        <div *ngFor="let item of whyChooseUs" class="why-card">
+          <div class="icon">{{ item.icon }}</div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="gradient-text" style="text-align: center; margin-bottom: 60px;">Our Team</h2>
+      <div class="team-grid">
+        <div *ngFor="let member of teamMembers" class="team-card">
+          <div class="team-avatar">{{ member.name.charAt(0) }}</div>
+          <h3>{{ member.name }}</h3>
+          <p class="role">{{ member.role }}</p>
+          <p class="bio">{{ member.bio }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="about-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <h3 class="gradient-text">10+</h3>
+          <p>Years in Business</p>
+        </div>
+        <div class="stat">
+          <h3 class="gradient-text">5000+</h3>
+          <p>Happy Clients</p>
+        </div>
+        <div class="stat">
+          <h3 class="gradient-text">50M+</h3>
+          <p>Orders Fulfilled</p>
+        </div>
+        <div class="stat">
+          <h3 class="gradient-text">99.9%</h3>
+          <p>Accuracy Rate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="about-cta">
+    <div class="container">
+      <h2 class="gradient-text">Join Our Growing List of Satisfied Partners</h2>
+      <p>Let's work together to achieve your fulfillment goals.</p>
+      <a routerLink="/get-a-quote" class="primary-btn">Get Started Today</a>
+    </div>
+  </section>
+</div>

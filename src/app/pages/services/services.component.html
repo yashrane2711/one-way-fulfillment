@@ -1,0 +1,41 @@
+<div class="services-page">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="gradient-text">Our Services</h1>
+      <p>Comprehensive warehouse and fulfillment solutions tailored to your business needs</p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services-detail-section">
+    <div class="container">
+      <div class="services-detail-grid">
+        <div *ngFor="let service of servicesDetail" class="service-detail-card">
+          <div class="card-header">
+            <h3 class="gradient-text">{{ service.title }}</h3>
+          </div>
+          <p class="service-description">{{ service.description }}</p>
+          <div class="features">
+            <h4>Key Features:</h4>
+            <ul>
+              <li *ngFor="let feature of service.features">
+                <span class="checkmark">✓</span>
+                {{ feature }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="services-cta">
+    <div class="container">
+      <h2 class="gradient-text">Ready to Get Started?</h2>
+      <p>Let us handle your fulfillment while you focus on growing your business.</p>
+      <a routerLink="/get-a-quote" class="primary-btn">Get Your Quote Today</a>
+    </div>
+  </section>
+</div>

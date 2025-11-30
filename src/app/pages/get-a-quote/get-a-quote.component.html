@@ -1,0 +1,112 @@
+<div class="quote-page">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="gradient-text">Get Your Custom Quote</h1>
+      <p>Fill out the form below and our team will get back to you within 24 hours</p>
+    </div>
+  </section>
+
+  <!-- Quote Form Section -->
+  <section class="quote-content">
+    <div class="container">
+      <div class="quote-container">
+        <!-- Left: Image -->
+        <div class="quote-left">
+          <div class="warehouse-image">
+            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=400&fit=crop" alt="Warehouse">
+            <div class="image-overlay"></div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="quote-right">
+          <h2 class="gradient-text">Let's Get Started</h2>
+          <p class="quote-subtitle">Fill out the form and we'll be in touch shortly.</p>
+
+          <!-- Success Message -->
+          <div *ngIf="submitSuccess" class="success-message">
+            <span class="icon">✓</span>
+            <p>Thank you! We've received your inquiry and will contact you soon.</p>
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="submitError" class="error-message">
+            <span class="icon">!</span>
+            <p>Please fill in all required fields correctly.</p>
+          </div>
+
+          <!-- Form -->
+          <form (ngSubmit)="onSubmit()" #quoteForm="ngForm" *ngIf="!submitSuccess">
+            <!-- Full Name -->
+            <div class="form-group">
+              <input
+                type="text"
+                [(ngModel)]="formData.fullName"
+                name="fullName"
+                placeholder="Full Name"
+                required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <input
+                type="email"
+                [(ngModel)]="formData.emailAddress"
+                name="emailAddress"
+                placeholder="Email Address"
+                required>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+              <input
+                type="tel"
+                [(ngModel)]="formData.phoneNumber"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                required>
+            </div>
+
+            <!-- Company -->
+            <div class="form-group">
+              <input
+                type="text"
+                [(ngModel)]="formData.company"
+                name="company"
+                placeholder="Company"
+                required>
+            </div>
+
+            <!-- Number of Products -->
+            <div class="form-group">
+              <input
+                type="number"
+                [(ngModel)]="formData.numProducts"
+                name="numProducts"
+                placeholder="Number of products"
+                required>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <textarea
+                [(ngModel)]="formData.message"
+                name="message"
+                placeholder="Tell us about your needs (optional)"
+                rows="5"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="submit-btn"
+              [disabled]="submitted">
+              {{ submitted ? 'Sending...' : 'SEND MESSAGE' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

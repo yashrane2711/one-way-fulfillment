@@ -1,0 +1,64 @@
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Footer Top -->
+    <div class="footer-top">
+      <!-- Column 1: About -->
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <p>ONE WAY FULFILLMENT provides world-class warehouse and fulfillment solutions for growing e-commerce businesses.</p>
+        <div class="social-links">
+          <a href="#" class="social-icon">f</a>
+          <a href="#" class="social-icon">t</a>
+          <a href="#" class="social-icon">in</a>
+          <a href="#" class="social-icon">ig</a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li *ngFor="let link of quickLinks">
+            <a [routerLink]="link.path">{{ link.label }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li *ngFor="let service of services">
+            <a href="#">{{ service }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact -->
+      <div class="footer-col footer-contact">
+        <h4>Contact Info</h4>
+        <ul>
+          <li *ngFor="let item of contact">
+            <span class="contact-icon">{{ item.icon }}</span>
+            <div>
+              <p class="label">{{ item.label }}</p>
+              <p>{{ item.text }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="copyright">
+        © {{ currentYear }} ONE WAY FULFILLMENT. All rights reserved.
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,412 @@
+.home-page {
+  position: relative;
+  z-index: 1;
+}
+
+// *** HERO SECTION ***
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 120px 50px 80px;
+  margin-top: 80px;
+  overflow: hidden;
+
+  // *** BACKGROUND IMAGE ***
+  background-image: url('/assets/images/hero-1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  // *** DARK OVERLAY ***
+ &::after {
+    content: '';
+    position: absolute;
+    inset: 0; /* shorthand for top/left/right/bottom: 0 */
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.75) 0%,
+      rgba(10, 10, 10, 0.85) 50%,
+      rgba(10, 10, 10, 0.9) 100%
+    );
+    z-index: 0;              /* was -1 */
+    pointer-events: none;    /* overlay won't block clicks */
+  }
+
+  
+
+  @media (max-width: 968px) {
+    padding: 100px 30px 60px;
+    margin-top: 60px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 80px 20px 40px;
+    margin-top: 50px;
+  }
+
+  h1 {
+      position: relative;
+    font-size: 4.5rem;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    z-index: 2;
+
+    @media (max-width: 968px) {
+      font-size: 3.5rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  p {
+   position: relative;
+    z-index: 2;            // above overlay
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+
+    @media (max-width: 968px) {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// *** FLOATING BOXES ***
+.floating-box {
+  position: absolute;
+  border: 3px solid;
+  border-radius: 20px;
+  opacity: 0.5;
+  background: transparent;
+  z-index: 2;  // above overlay, below text
+
+  
+  &:nth-child(1) {
+    top: 15%;
+    left: 8%;
+    width: 150px;
+    height: 150px;
+    border-color: #00d4ff;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+  }
+
+  &:nth-child(2) {
+    top: 55%;
+    right: 12%;
+    width: 120px;
+    height: 120px;
+    border-color: #ffff00;
+    box-shadow: 0 0 30px rgba(255, 255, 0, 0.5);
+  }
+
+  &:nth-child(3) {
+    bottom: 25%;
+    left: 15%;
+    width: 180px;
+    height: 180px;
+    border-color: #ff00ff;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+  }
+  
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+// *** FALLING BOX LAYER ***
+#falling-box-layer {
+   position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; // crop boxes outside viewport
+}
+// *** CANVAS CONTAINER - MUST HAVE SIZE ***
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+
+  canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+// Make sure hero section is positioned relative
+.hero {
+  position: relative;  // IMPORTANT - needed for absolute positioning of children
+  
+  #falling-box-layer {
+    position: absolute;
+    inset: 0;  // top: 0, right: 0, bottom: 0, left: 0
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+}
+// *** HERO BUTTONS ***
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  z-index: 2;  // above overlay
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+  }
+}
+ .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+         @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+// *** STATS SECTION ***
+.stats {
+     position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding: 80px 50px;
+            z-index: 1;
+            background: rgba(26, 26, 26, 0.5);
+            backdrop-filter: blur(10px);
+
+  @media (max-width: 968px) {
+    padding: 60px 30px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 40px 20px;
+  }
+}
+
+
+.stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+     }
+
+.stat-item {
+      text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+
+  .stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+
+    @media (max-width: 600px) {
+      font-size: 2.5rem;
+    }
+  }
+  
+
+  .stat-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+}
+
+// *** SERVICES SECTION ***
+.services-section {
+  padding: 120px 50px;
+  background: rgba(10, 10, 10, 0.5);
+
+  @media (max-width: 968px) {
+    padding: 80px 30px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 60px 20px;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+
+  h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+
+    @media (max-width: 968px) {
+      font-size: 2.5rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 500px;
+    margin: 0 auto;
+
+    @media (max-width: 600px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+
+  @media (max-width: 968px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.service-card {
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    padding: 25px;
+  }
+
+  &:hover {
+    background: rgba(26, 26, 26, 0.9);
+    border-color: var(--primary);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--light);
+
+    @media (max-width: 600px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+
+    @media (max-width: 600px) {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// *** CTA SECTION ***
+.cta-section {
+  padding: 120px 50px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 255, 0.05));
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+
+  @media (max-width: 968px) {
+    padding: 80px 30px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 60px 20px;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+.cta-content {
+  text-align: center;
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+
+    @media (max-width: 968px) {
+      font-size: 2.5rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 1.8rem;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.7);
+
+    @media (max-width: 600px) {
+      font-size: 1rem;
+    }
+  }
+
+  a {
+    display: inline-block;
+  }
+}

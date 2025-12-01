@@ -260,3 +260,43 @@ form {
     font-size: 2rem;
   }
 }
+
+.enquiry-wrap {
+	display: flex;
+	justify-content: center;
+}
+.enquiry-card {
+	width: 100%;
+	max-width: 900px;
+	background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(0, 212, 255, 0.05));
+	border-radius: 12px;
+	box-shadow: 0 12px 40px rgba(37,99,235,0.08);
+	padding: 28px;
+	color: var(--light);
+	border: 2px solid rgba(0, 212, 255, 0.3);
+}
+
+.step-label { font-weight: 700; color: #374151; }
+.progress { flex: 1; height: 10px; background: #e6eefc; border-radius: 999px; overflow: hidden; }
+.progress-bar { height: 100%; background: linear-gradient(90deg,#2563eb,#1e40af); width: 20%; transition: width 240ms ease; }
+.wizard-form h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 18px; }
+.form-grid label { display: flex; flex-direction: column; font-weight: 600; color: #374151; }
+.form-grid input, .form-grid select { margin-top: 8px; padding: 10px 12px; border-radius: 8px; border: 1px solid #e6eefc; background: #fff; font-size: 0.95rem; color: #22223b; }
+.checkbox-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 12px; margin-bottom: 12px; }
+.checkbox-grid label { font-weight: 600; }
+.toggle-label { display:flex; align-items:center; justify-content:space-between; }
+.actions { display:flex; justify-content:flex-end; gap:12px; margin-top:20px; }
+.btn-primary { background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%); color: #fff; border: none; border-radius: 24px; padding: 10px 22px; font-weight:700; cursor:pointer; }
+.btn-secondary { background:#fff; color:#2563eb; border:2px solid #2563eb; border-radius:24px; padding:10px 18px; font-weight:700; cursor:pointer; }
+.btn-primary:disabled, .btn-secondary:disabled { opacity:0.6; cursor:not-allowed; }
+.success { text-align:center; padding:18px; }
+.success .check { font-size:3rem; color:#34d399; background:#e6fff3; display:inline-block; width:88px; height:88px; line-height:88px; border-radius:50%; margin-bottom:12px; }
+.expect { text-align:left; max-width:420px; margin:16px auto; }
+.success-actions { display:flex; gap:12px; justify-content:center; margin-top:12px; }
+
+@media (max-width: 900px) {
+	.form-grid { grid-template-columns: 1fr; }
+	.checkbox-grid { grid-template-columns: 1fr; }
+	.enquiry-card { padding: 18px; }
+}

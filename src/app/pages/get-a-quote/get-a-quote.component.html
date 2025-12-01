@@ -1,113 +1,228 @@
-<div class="quote-page">
-  <!-- Page Header -->
-  <section class="page-header">
-    <div class="container">
-      <h1 class="gradient-text">Get Your Custom Quote</h1>
-      <p>Fill out the form below and our team will get back to you within 24 hours</p>
-    </div>
-  </section>
+<div class="homepage-bg">
+  <main class="enquiry-page">
+    <header class="page-header">
+      <h1>Get Your Custom Quote</h1>
+      <h3>Tell us about your needs</h3>
+    </header>
 
-  <!-- Quote Form Section -->
-  <section class="quote-content">
-    <div class="container">
-      <div class="quote-container">
-        <!-- Left: Image -->
-        <div class="quote-left">
-          <div class="warehouse-image">
-            <img src="/assets/images/get-quote.png" alt="Warehouse">
-
-            <div class="image-overlay"></div>
-          </div>
-        </div>
-
-        <!-- Right: Form -->
-        <div class="quote-right">
-          <h2 class="gradient-text">Let's Get Started</h2>
-          <p class="quote-subtitle">Fill out the form and we'll be in touch shortly.</p>
-
-          <!-- Success Message -->
-          <div *ngIf="submitSuccess" class="success-message">
-            <span class="icon">✓</span>
-            <p>Thank you! We've received your inquiry and will contact you soon.</p>
+    <section class="enquiry-wrap">
+      <div class="enquiry-card">
+        <div *ngIf="!submitted">
+          <div class="step-top">
+            <div class="step-label">Step {{ step }} of {{ maxStep }}</div>
+            <div class="progress">
+              <div
+                class="progress-bar"
+                [style.width.%]="(step / maxStep) * 100"
+              ></div>
+            </div>
           </div>
 
-          <!-- Error Message -->
-          <div *ngIf="submitError" class="error-message">
-            <span class="icon">!</span>
-            <p>Please fill in all required fields correctly.</p>
-          </div>
+          <form [formGroup]="form" class="wizard-form">
+            <!-- Step 1: Company Information -->
+            <div *ngIf="step === 1" class="step">
+              <h4>— Company Information —</h4>
 
-          <!-- Form -->
-          <form (ngSubmit)="onSubmit()" #quoteForm="ngForm" *ngIf="!submitSuccess">
-            <!-- Full Name -->
-            <div class="form-group">
-              <input
-                type="text"
-                [(ngModel)]="formData.fullName"
-                name="fullName"
-                placeholder="Full Name"
-                required>
+              <!-- Company group -->
+              <div class="form-grid" formGroupName="company">
+                <label>
+                  Company Name
+                  <input formControlName="companyName" placeholder="ACME Inc." />
+                </label>
+                <label>
+                  Industry
+                  <select formControlName="industry">
+                    <option value="">Select industry</option>
+                    <option>Retail</option>
+                    <option>E-commerce</option>
+                    <option>Manufacturing</option>
+                    <option>Wholesale</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>
+                  Website
+                  <input formControlName="website" placeholder="https://" />
+                </label>
+              </div>
+
+              <!-- Contact group -->
+              <div class="form-grid" formGroupName="contact">
+                <label>
+                  Your Name
+                  <input formControlName="yourName" placeholder="Jane Doe" />
+                </label>
+                <label>
+                  Email
+                  <input
+                    formControlName="email"
+                    placeholder="you@company.com"
+                  />
+                </label>
+                <label>
+                  Phone
+                  <input
+                    formControlName="phone"
+                    placeholder="(123) 456-7890"
+                  />
+                </label>
+              </div>
             </div>
 
-            <!-- Email -->
-            <div class="form-group">
-              <input
-                type="email"
-                [(ngModel)]="formData.emailAddress"
-                name="emailAddress"
-                placeholder="Email Address"
-                required>
+            <!-- Step 2: Services Needed -->
+            <div *ngIf="step === 2" class="step" formGroupName="services">
+              <h4>— What Services Do You Need? —</h4>
+
+              <div class="checkbox-grid">
+                <label><input type="checkbox" formControlName="dtc" /> DTC Fulfillment</label>
+                <label><input type="checkbox" formControlName="b2b" /> B2B & Wholesale</label>
+                <label><input type="checkbox" formControlName="amazon" /> Amazon FBM</label>
+                <label><input type="checkbox" formControlName="returns" /> Returns Processing</label>
+                <label><input type="checkbox" formControlName="kitting" /> Custom Kitting</label>
+                <label><input type="checkbox" formControlName="freight" /> Shipping & Freight</label>
+              </div>
+
+              <div class="form-grid">
+                <label>
+                  Monthly Order Volume
+                  <input formControlName="monthlyVolume" placeholder="e.g. 5,000" />
+                </label>
+                <label>
+                  Average Order Weight (kg)
+                  <input formControlName="avgWeight" placeholder="e.g. 0.5" />
+                </label>
+              </div>
             </div>
 
-            <!-- Phone -->
-            <div class="form-group">
-              <input
-                type="tel"
-                [(ngModel)]="formData.phoneNumber"
-                name="phoneNumber"
-                placeholder="Phone Number"
-                required>
+            <!-- Step 3: Storage & Inventory -->
+            <div *ngIf="step === 3" class="step" formGroupName="storage">
+              <h4>— Storage & Inventory —</h4>
+              <div class="form-grid">
+                <label>
+                  Storage Type
+                  <select formControlName="storageType">
+                    <option value="">Select storage</option>
+                    <option>Ambient</option>
+                    <option>Climate Controlled</option>
+                    <option>Hazmat</option>
+                  </select>
+                </label>
+                <label>
+                  SKUs
+                  <input formControlName="skus" placeholder="e.g. 120" />
+                </label>
+                <label>
+                  Average SKU Size
+                  <input
+                    formControlName="avgSkuSize"
+                    placeholder="e.g. 10x10x5 cm"
+                  />
+                </label>
+                <label class="toggle-label">
+                  Pallet Requirement
+                  <input type="checkbox" formControlName="palletRequired" />
+                </label>
+              </div>
             </div>
 
-            <!-- Company -->
-            <div class="form-group">
-              <input
-                type="text"
-                [(ngModel)]="formData.company"
-                name="company"
-                placeholder="Company"
-                required>
+            <!-- Step 4: Technology & Integration -->
+            <div *ngIf="step === 4" class="step" formGroupName="tech">
+              <h4>— Technology & Integration —</h4>
+              <div class="form-grid">
+                <label>
+                  Platform
+                  <select formControlName="platform">
+                    <option value="">Select platform</option>
+                    <option>Shopify</option>
+                    <option>WooCommerce</option>
+                    <option>Amazon</option>
+                    <option>Custom</option>
+                  </select>
+                </label>
+                <label class="toggle-label">
+                  API Access
+                  <input type="checkbox" formControlName="apiAccess" />
+                </label>
+                <label>
+                  Sync options
+                  <input
+                    formControlName="syncOptions"
+                    placeholder="e.g. orders, inventory"
+                  />
+                </label>
+              </div>
             </div>
 
-            <!-- Number of Products -->
-            <div class="form-group">
-              <input
-                type="number"
-                [(ngModel)]="formData.numProducts"
-                name="numProducts"
-                placeholder="Number of products"
-                required>
+            <!-- Step 5: Timeline & Budget -->
+            <div *ngIf="step === 5" class="step" formGroupName="timeline">
+              <h4>— Timeline & Budget —</h4>
+              <div class="form-grid">
+                <label>
+                  Start Date
+                  <input type="date" formControlName="startDate" />
+                </label>
+                <label>
+                  Monthly Budget
+                  <input formControlName="monthlyBudget" placeholder="$" />
+                </label>
+                <label>
+                  Urgency
+                  <select formControlName="urgency">
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                  </select>
+                </label>
+              </div>
             </div>
 
-            <!-- Message -->
-            <div class="form-group">
-              <textarea
-                [(ngModel)]="formData.message"
-                name="message"
-                placeholder="Tell us about your needs (optional)"
-                rows="5"></textarea>
+            <div class="actions">
+              <button
+                type="button"
+                class="btn-secondary"
+                (click)="previous()"
+                [disabled]="step === 1"
+              >
+                Previous
+              </button>
+              <button
+                *ngIf="step < maxStep"
+                type="button"
+                class="btn-primary"
+                (click)="next()"
+              >
+                Next
+              </button>
+              <button
+                *ngIf="step === maxStep"
+                type="button"
+                class="btn-primary"
+                (click)="submit()"
+              >
+                Submit
+              </button>
             </div>
-
-            <!-- Submit Button -->
-            <button
-              type="submit"
-              class="submit-btn"
-              [disabled]="submitted">
-              {{ submitted ? 'Sending...' : 'SEND MESSAGE' }}
-            </button>
           </form>
         </div>
+
+        <!-- Success Screen -->
+        <div *ngIf="submitted" class="success">
+          <div class="check">✓</div>
+          <h2>Thank you! We've received your enquiry.</h2>
+          <p>Reference number: <strong>{{ reference }}</strong></p>
+          <ol class="expect">
+            <li>Custom quote prepared</li>
+            <li>Phone call to discuss options</li>
+            <li>Personalized proposal sent</li>
+          </ol>
+          <div class="success-actions">
+            <a class="btn-secondary" routerLink="/">Back to Home</a>
+            <button class="btn-primary" (click)="downloadPdf()">
+              Download PDF
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </div>
